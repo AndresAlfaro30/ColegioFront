@@ -1,0 +1,98 @@
+<div style=" width: 40%; height: 100%;float:left; padding: 3%; text-align: center;">
+    <form [formGroup]=registroForm (ngSubmit)="registro(registroForm.value)">
+        <h1>Registrar Profesor</h1>
+        <div class="row">
+            <div class="col">
+                <label for="nombres">Nombres</label>
+                <input type="text" class="form-control" placeholder="Nombres" value="" formControlName="nombres">
+            </div>
+            <div class="col">
+                <label for="nombres">Apellidos</label>
+                <input type="text" class="form-control" placeholder="Apellidos" value="" formControlName="apellidos">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <label for="tipoIdentificacion">Tipo Documento</label>
+                <select formControlName="tipoIdentificacion" class="form-control" placeholder="Celular">
+                    <option [value]="documento.nombre" *ngFor="let documento of documentos">{{documento.nombre}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="nombres">Numero Documento</label>
+                <input type="number" class="form-control" placeholder="Numero Documento" value=""
+                    formControlName="numeroIdentificacion">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <label for="nombres">Correo</label>
+                <input type="email" class="form-control" placeholder="Correo" value="" formControlName="correo">
+            </div>
+            <div class="col">
+                <label for="nombres">Celular</label>
+                <input type="numer" class="form-control" placeholder="Celular" value="" formControlName="celular">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <label for="nombres">Materia</label>
+                <select formControlName="materia" class="form-control" placeholder="Celular">
+                    <option [value]="materia.nombre" *ngFor="let materia of materias">{{materia.nombre}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="nombres">Edad</label>
+                <input type="number" class="form-control" placeholder="edad" value="" formControlName="edad">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <button *ngIf="editarV" class="btn btn-warning btn-lg btn-block d-block mx-auto mb-4"
+                type="submit">Editar</button>
+            <button *ngIf="editarV" class="btn btn-danger btn-lg btn-block d-block mx-auto mb-4"
+                (click)="cancelar()">Cancelar</button>
+            <button *ngIf="!editarV" class="btn btn-primary btn-lg btn-block d-block mx-auto mb-4"
+                type="submit">Registrar</button>
+        </div>
+    </form>
+</div>
+<div style=" width: 60%; height: 100%;float:left; text-align: center;">
+    <h1>Listado Profesores</h1>
+    <table class="table table-ligth table-striped table-hover">
+        <thead>
+            <tr>
+
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Numero Identificación</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Materia</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let profesor of profesoresRespuesta">
+
+                <td>{{ profesor.nombres }}</td>
+                <td>{{ profesor.apellidos}}</td>
+                <td>{{ profesor.numeroIdentificacion}}</td>
+                <td>{{ profesor.correo}}</td>
+                <td>{{ profesor.celular}}</td>
+                <td>{{ profesor.materia }}</td>
+                <td>{{ profesor.edad}}</td>
+                <td class="text-center"><a (click)="editar(profesor)" class="btn btn-primary m-1">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </a><a (click)="eliminar(profesor)" class="btn btn-danger m-1">
+                        <fa-icon [icon]="faTrashAlt"></fa-icon>
+                    </a></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

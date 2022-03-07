@@ -1,0 +1,11 @@
+<nav class="navbar bg-success">
+    <span class="h1">Colegio</span>
+    <button  style="margin-right: -60%;" class="btn btn-primary" (click)="profesoresCambio()">Profesores</button>
+    <button style="margin-right: 50%;" class="btn btn-primary" (click)="estudiantesCambio()">Estudiantes</button>
+</nav>
+<div *ngIf="profesores">
+  <app-profesores></app-profesores>
+</div>
+<div *ngIf="!profesores">
+  <app-estudiantes></app-estudiantes>
+</div>
